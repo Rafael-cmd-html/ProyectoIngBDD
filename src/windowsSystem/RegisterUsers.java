@@ -7,15 +7,18 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class Register extends javax.swing.JFrame {
+public class RegisterUsers extends javax.swing.JFrame {
     
     ImageIcon image;
     Icon icon;
+    int xMouse, yMouse;
     String pass, confirmPass, nombreUsuario, correo;
-    public Register() {
+    public RegisterUsers() {
         
         initComponents();
         this.setLocationRelativeTo(this);
+        this.setTitle("Registrarse");
+        
         
         setScaleLabel(lblPortada, "src/images/fondo_login_v3.jpg");
         setScaleLabel(lblImagenUsuario, "src/images/logo_v4.png");
@@ -62,42 +65,42 @@ public class Register extends javax.swing.JFrame {
         psfContra = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(640, 590));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblPortada.setToolTipText("");
-        jPanel1.add(lblPortada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 210));
-        jPanel1.add(lblImagenUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 80, 80));
+        jPanel1.add(lblPortada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 210));
+        jPanel1.add(lblImagenUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 80, 80));
 
         lblRegistrar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblRegistrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRegistrar.setText("Registrar ");
-        jPanel1.add(lblRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 80, 20));
+        jPanel1.add(lblRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 80, 20));
 
         lblNombreUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         lblNombreUsuario.setText("Nombre de Usuario");
-        jPanel1.add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
+        jPanel1.add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, -1, -1));
 
         lblCorreo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         lblCorreo.setText("Correo electrónico");
-        jPanel1.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
+        jPanel1.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, -1, -1));
 
         lblContra.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         lblContra.setText("Contraseña");
-        jPanel1.add(lblContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, -1, -1));
+        jPanel1.add(lblContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, -1, -1));
 
         lblConfirmContra.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         lblConfirmContra.setText("Confirmar contraseña");
-        jPanel1.add(lblConfirmContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, -1, -1));
+        jPanel1.add(lblConfirmContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, -1, -1));
 
         rbAdministrador.setBackground(new java.awt.Color(255, 255, 255));
         rbAdministrador.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         rbAdministrador.setText("Administrador");
         rbAdministrador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(rbAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
+        jPanel1.add(rbAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
 
         rbRecepcionista.setBackground(new java.awt.Color(255, 255, 255));
         rbRecepcionista.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
@@ -108,7 +111,7 @@ public class Register extends javax.swing.JFrame {
                 rbRecepcionistaActionPerformed(evt);
             }
         });
-        jPanel1.add(rbRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
+        jPanel1.add(rbRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
 
         btnRegistrar.setBackground(new java.awt.Color(200, 220, 247));
 
@@ -162,7 +165,7 @@ public class Register extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 200, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 200, -1));
 
         txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
         txtCorreo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
@@ -178,19 +181,19 @@ public class Register extends javax.swing.JFrame {
                 txtCorreoMousePressed(evt);
             }
         });
-        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 200, 20));
+        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 200, 20));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 130, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 130, 10));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 130, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, 130, 10));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 130, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, 130, 10));
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, 130, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 130, 10));
 
         psfConfirmContra.setBackground(new java.awt.Color(255, 255, 255));
         psfConfirmContra.setForeground(java.awt.Color.gray);
@@ -205,7 +208,7 @@ public class Register extends javax.swing.JFrame {
                 psfConfirmContraMousePressed(evt);
             }
         });
-        jPanel1.add(psfConfirmContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 130, -1));
+        jPanel1.add(psfConfirmContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 480, 130, -1));
 
         psfContra.setBackground(new java.awt.Color(255, 255, 255));
         psfContra.setForeground(java.awt.Color.gray);
@@ -220,13 +223,13 @@ public class Register extends javax.swing.JFrame {
                 psfContraMousePressed(evt);
             }
         });
-        jPanel1.add(psfContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 130, -1));
+        jPanel1.add(psfContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 130, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,14 +312,14 @@ public class Register extends javax.swing.JFrame {
 
     private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
         // TODO add your handling code here:
-        correo = txtCorreo.getText();
+        nombreUsuario = txtNombre.getText();
         pass = String.valueOf(psfContra.getPassword());
         confirmPass = String.valueOf(psfConfirmContra.getPassword());
         
-        if(correo.equals("")){
+        if(nombreUsuario.equals("")){
             
-            txtCorreo.setForeground(Color.gray);
-            txtCorreo.setText("Correo");
+            txtNombre.setForeground(Color.gray);
+            txtNombre.setText("Nombre Usuario");
             
         }
         if(pass.equals("")){
@@ -402,7 +405,7 @@ public class Register extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Register().setVisible(true);
+                new RegisterUsers().setVisible(true);
             }
         });
     }

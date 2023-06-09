@@ -13,12 +13,16 @@ public class Login extends javax.swing.JFrame {
     Icon icon;
 
     int xMouse, yMouse;
-    Register paginaRegistro = new Register();
+    
+    RegisterUsers paginaRegistro = new RegisterUsers();        
+    AdminOptions ventanaAdmin= new AdminOptions();
+    RecepcionistOptions ventanaRecep= new RecepcionistOptions();
     
     public Login() {
         
         initComponents();
         this.setLocationRelativeTo(this);
+        this.setTitle("Inicio de sesión");
         
         bgUsuarios.add(rbAdministrador);
         bgUsuarios.add(rbRecepcionista);
@@ -48,13 +52,9 @@ public class Login extends javax.swing.JFrame {
         spNombre = new javax.swing.JSeparator();
         btnAcceder = new javax.swing.JPanel();
         lblAcceder = new javax.swing.JLabel();
-        cabecera = new javax.swing.JPanel();
-        closePanel = new javax.swing.JPanel();
-        lblX = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
-        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -203,69 +203,6 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.add(btnAcceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 400, 120, 40));
 
-        cabecera.setBackground(new java.awt.Color(255, 255, 255));
-        cabecera.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cabecera.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                cabeceraMouseDragged(evt);
-            }
-        });
-        cabecera.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                cabeceraMousePressed(evt);
-            }
-        });
-
-        closePanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        lblX.setBackground(new java.awt.Color(0, 0, 0));
-        lblX.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblX.setText("X");
-        lblX.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblX.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblXMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblXMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblXMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout closePanelLayout = new javax.swing.GroupLayout(closePanel);
-        closePanel.setLayout(closePanelLayout);
-        closePanelLayout.setHorizontalGroup(
-            closePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, closePanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblX, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        closePanelLayout.setVerticalGroup(
-            closePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(closePanelLayout.createSequentialGroup()
-                .addComponent(lblX, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout cabeceraLayout = new javax.swing.GroupLayout(cabecera);
-        cabecera.setLayout(cabeceraLayout);
-        cabeceraLayout.setHorizontalGroup(
-            cabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cabeceraLayout.createSequentialGroup()
-                .addGap(0, 610, Short.MAX_VALUE)
-                .addComponent(closePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        cabeceraLayout.setVerticalGroup(
-            cabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cabeceraLayout.createSequentialGroup()
-                .addComponent(closePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 30));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,39 +216,6 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cabeceraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cabeceraMousePressed
-        // TODO add your handling code here:
-        xMouse=evt.getX();
-        yMouse=evt.getY();
-    }//GEN-LAST:event_cabeceraMousePressed
-
-    private void cabeceraMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cabeceraMouseDragged
-        // TODO add your handling code here:
-        
-        int xScreen=evt.getXOnScreen();
-        int yScreen= evt.getYOnScreen();
-        this.setLocation(xScreen-xMouse, yScreen-yMouse);
-    }//GEN-LAST:event_cabeceraMouseDragged
-
-    private void lblXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblXMouseClicked
-        // TODO add your handling code here:
-        
-        System.exit(0);
-    }//GEN-LAST:event_lblXMouseClicked
-
-    private void lblXMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblXMouseEntered
-        // TODO add your handling code here:
-        closePanel.setBackground(Color.red);
-        lblX.setForeground(Color.white);
-        
-    }//GEN-LAST:event_lblXMouseEntered
-
-    private void lblXMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblXMouseExited
-        // TODO add your handling code here:
-        closePanel.setBackground(Color.white);
-        lblX.setForeground(Color.black);
-    }//GEN-LAST:event_lblXMouseExited
 
     private void lblAccederMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAccederMouseEntered
         // TODO add your handling code here:
@@ -383,6 +287,16 @@ public class Login extends javax.swing.JFrame {
     private void lblAccederMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAccederMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
+        if(rbAdministrador.isSelected()){
+            
+            ventanaAdmin.setVisible(true);
+            
+        }
+        if(rbRecepcionista.isSelected()){
+            
+            ventanaRecep.setVisible(true);
+            
+        }
     }//GEN-LAST:event_lblAccederMouseClicked
 
     private void lblRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegisterMouseClicked
@@ -416,8 +330,6 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgUsuarios;
     private javax.swing.JPanel btnAcceder;
-    private javax.swing.JPanel cabecera;
-    private javax.swing.JPanel closePanel;
     private javax.swing.JLabel fondo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAcceder;
@@ -426,7 +338,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogoLogin;
     private javax.swing.JLabel lblRegister;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JLabel lblX;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel nombreEmpresa;
     private javax.swing.JPasswordField psfContra;
