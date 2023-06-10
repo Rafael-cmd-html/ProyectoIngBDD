@@ -18,6 +18,7 @@ public class RegisterOptions extends javax.swing.JFrame {
     ImageIcon image;
     Icon icon;
     RegisterUsers ventanaRegistro= new RegisterUsers();
+    AdminOptions opciones= new AdminOptions();
     RegisterDrs registroDrs= new RegisterDrs();
     public RegisterOptions() {
         
@@ -184,11 +185,14 @@ public class RegisterOptions extends javax.swing.JFrame {
 
     private void lblRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegresarMouseClicked
         // TODO add your handling code here:
+        this.setVisible(false);
+        opciones.setVisible(true);
     }//GEN-LAST:event_lblRegresarMouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new RegisterOptions().setVisible(true);
             }
         });
