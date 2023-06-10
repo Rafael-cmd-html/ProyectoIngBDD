@@ -18,8 +18,8 @@ public class RegisterOptions extends javax.swing.JFrame {
     ImageIcon image;
     Icon icon;
     RegisterUsers ventanaRegistro= new RegisterUsers();
-    AdminOptions opciones= new AdminOptions();
     RegisterDrs registroDrs= new RegisterDrs();
+    RegisterPatients rp= new RegisterPatients();
     public RegisterOptions() {
         
         initComponents();
@@ -171,14 +171,22 @@ public class RegisterOptions extends javax.swing.JFrame {
         
         if(opcionSeleccionada.equalsIgnoreCase("Registrar administrador") || opcionSeleccionada.equals("Registrar recepcionista")){
             
-            this.setVisible(false);
+            this.dispose();
             ventanaRegistro.setVisible(true);
             
         }
         else if(opcionSeleccionada.equalsIgnoreCase("Registrar médico")){
             
-            this.setVisible(false);
+           this.dispose();
             registroDrs.setVisible(true);
+            
+        }
+        else if(opcionSeleccionada.equalsIgnoreCase("Registrar paciente")){
+            
+            
+            this.dispose();
+            rp.setVisible(true);
+            
             
         }
     }//GEN-LAST:event_lblContinuarMouseClicked
@@ -186,7 +194,6 @@ public class RegisterOptions extends javax.swing.JFrame {
     private void lblRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegresarMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        opciones.setVisible(true);
     }//GEN-LAST:event_lblRegresarMouseClicked
 
     public static void main(String args[]) {

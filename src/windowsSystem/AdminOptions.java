@@ -387,7 +387,7 @@ public class AdminOptions extends javax.swing.JFrame {
 
     private void lblIrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIrMouseClicked
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
         ventanaOpcionesRegistro.setVisible(true);
         
     }//GEN-LAST:event_lblIrMouseClicked
