@@ -1,11 +1,14 @@
 package windowsSystem;
 
+import Classes.ConexionBDD;
+import Classes.Main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
     
@@ -21,6 +24,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         
         initComponents();
+        
         this.setLocationRelativeTo(this);
         this.setTitle("Inicio de sesión");
         
@@ -142,7 +146,7 @@ public class Login extends javax.swing.JFrame {
                 txtNombreUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 270, -1));
+        jPanel1.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 270, 20));
 
         lblContrasenia.setBackground(new java.awt.Color(204, 204, 204));
         lblContrasenia.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -286,17 +290,38 @@ public class Login extends javax.swing.JFrame {
 
     private void lblAccederMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAccederMouseClicked
         // TODO add your handling code here:
-        this.setVisible(false);
-        if(rbAdministrador.isSelected()){
-            
-            ventanaAdmin.setVisible(true);
-            
-        }
-        if(rbRecepcionista.isSelected()){
-            
-            ventanaRecep.setVisible(true);
-            
-        }
+        
+       if(txtNombreUsuario.getText().equals("") || txtNombreUsuario.getText().equalsIgnoreCase("Ingrese su nombre usuario") ||
+              String.valueOf(psfContra.getPassword()).equalsIgnoreCase("") ||
+              String.valueOf(psfContra.getPassword()).equalsIgnoreCase("Contraseña"))
+       {
+           
+           txtNombreUsuario.setText("Ingrese su nombre de usuario");
+           txtNombreUsuario.setForeground(Color.gray);
+           
+           psfContra.setText("Contraseña");
+           psfContra.setForeground(Color.gray);
+           
+           JOptionPane.showMessageDialog(this,"Rellena todos los campos antes de continuar =)");
+           
+       }
+       else{
+           
+           
+           if(rbAdministrador.isSelected()){
+
+
+               this.dispose();
+               ventanaAdmin.setVisible(true);
+
+            }
+            if(rbRecepcionista.isSelected()){
+
+                this.dispose();
+                ventanaRecep.setVisible(true);
+
+            }
+       }
     }//GEN-LAST:event_lblAccederMouseClicked
 
     private void lblRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegisterMouseClicked

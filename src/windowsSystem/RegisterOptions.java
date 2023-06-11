@@ -20,6 +20,8 @@ public class RegisterOptions extends javax.swing.JFrame {
     RegisterUsers ventanaRegistro= new RegisterUsers();
     RegisterDrs registroDrs= new RegisterDrs();
     RegisterPatients rp= new RegisterPatients();
+    RegisterConsults rc= new RegisterConsults();
+    
     public RegisterOptions() {
         
         initComponents();
@@ -187,6 +189,12 @@ public class RegisterOptions extends javax.swing.JFrame {
             this.dispose();
             rp.setVisible(true);
             
+            
+        }
+        else if(opcionSeleccionada.equals("Registrar consulta")){
+            
+            this.dispose();
+            rc.setVisible(true);
             
         }
     }//GEN-LAST:event_lblContinuarMouseClicked

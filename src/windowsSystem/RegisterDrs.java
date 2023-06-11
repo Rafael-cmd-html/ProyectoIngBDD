@@ -1,11 +1,15 @@
 
 package windowsSystem;
 
+import Classes.ConexionBDD;
+import Classes.Main;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -91,6 +95,9 @@ public class RegisterDrs extends javax.swing.JFrame {
         jLabel9.setText("Registrar");
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel9MouseEntered(evt);
             }
@@ -234,6 +241,9 @@ public class RegisterDrs extends javax.swing.JFrame {
         txtCorreo.setBorder(null);
         txtCorreo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCorreoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 txtCorreoMouseEntered(evt);
             }
@@ -749,6 +759,35 @@ public class RegisterDrs extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_txtFechaMousePressed
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+        
+        especialidad=txtEspecialidad.getText();
+        fechaIngreso=txtFecha.getText();
+        nombre=txtNombre.getText();
+        numeroTel= txtNumero.getText();
+        correo= txtCorreo.getText();
+        idMedico= txtId.getText();
+        cedula= txtCedula.getText();
+        
+        String sql= "INSERT INTO medicos VALUES" + 
+                "('"+nombre+"','"+especialidad+"','"+fechaIngreso+"','"+cedula+"','"+numeroTel+"','"+correo+"','"+idMedico+"')";
+        
+        try (PreparedStatement stm = ConexionBDD.conexion.prepareStatement(sql)){
+            
+            stm.executeUpdate();
+            stm.close();
+            
+        }catch(Exception e){
+            
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void txtCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoMouseClicked
 
 
     public static void main(String args[]) {
