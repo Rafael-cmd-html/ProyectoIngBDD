@@ -1,11 +1,15 @@
 
 package windowsSystem;
 
+import Classes.ConexionBDD;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +20,7 @@ public class RegisterPatients extends javax.swing.JFrame {
             
     ImageIcon image;
     Icon icon;
-    String nombre, edad, fechaNacimiento, fechaAfiliacion, telefono, numeroControl;
+    String nombre, edad, fechaNacimiento, fechaAfiliacion, telefono, numeroControl, estadoActual;
     public RegisterPatients() {
         
         
@@ -59,6 +63,7 @@ public class RegisterPatients extends javax.swing.JFrame {
         lblBtn2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(java.awt.Color.gray);
@@ -75,6 +80,9 @@ public class RegisterPatients extends javax.swing.JFrame {
         lblBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBtn.setText("Registrar");
         lblBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblBtnMouseEntered(evt);
             }
@@ -216,6 +224,9 @@ public class RegisterPatients extends javax.swing.JFrame {
         lblBtn2.setText("Regresar");
         lblBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtn2MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblBtn2MouseEntered(evt);
             }
@@ -344,8 +355,8 @@ public class RegisterPatients extends javax.swing.JFrame {
         
         if(nombre.equals("")){
             
-            txtEdad.setText("Nombre");
-            txtEdad.setForeground(Color.gray);
+            txtNombre.setText("Nombre");
+            txtNombre.setForeground(Color.gray);
             
         }
         if(fechaNacimiento.equals("")){
@@ -545,6 +556,63 @@ public class RegisterPatients extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_txtNumeroControlMousePressed
+
+    private void lblBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnMouseClicked
+        // TODO add your handling code here:                            
+        // TODO add your handling code here:
+        
+        edad= txtEdad.getText();
+        fechaNacimiento= txtFechaNacimiento.getText();
+        fechaAfiliacion= txtAfi.getText();
+        telefono= txtTelefono.getText();
+        nombre= txtNombre.getText();
+        numeroControl= txtNumeroControl.getText();
+        estadoActual= String.valueOf(cbEstadoActual.getSelectedItem());
+        
+        String sql= "INSERT INTO pacientes VALUES" + 
+                "('"+nombre+"','"+edad+"','"+fechaNacimiento+"','"+fechaAfiliacion+"','"+telefono+"','"+numeroControl+"','"+estadoActual+"')";
+        
+        
+        
+        try (PreparedStatement stm = ConexionBDD.conexion.prepareStatement(sql)){
+            
+            stm.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this, "¡Excelente! Paciente registrado =D");
+            
+            txtEdad.setForeground(Color.gray);
+            txtEdad.setText("Edad");
+            
+            txtFechaNacimiento.setForeground(Color.gray);
+            txtFechaNacimiento.setText("Fecha de nacimiento");
+            
+            txtNombre.setForeground(Color.gray);
+            txtNombre.setText("Nombre");
+            
+            txtTelefono.setForeground(Color.gray);
+            txtTelefono.setText("Télefono");
+            
+            txtAfi.setForeground(Color.gray);
+            txtAfi.setText("Afiliación");
+            
+            txtNumeroControl.setForeground(Color.gray);
+            txtNumeroControl.setText("Número control");
+            stm.close();
+            
+        }catch(Exception e){
+            
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_lblBtnMouseClicked
+
+    private void lblBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtn2MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        RegisterOptions rO= new RegisterOptions();
+        rO.setVisible(true);
+        
+        
+    }//GEN-LAST:event_lblBtn2MouseClicked
 
     
     public void setScaleLabel(JLabel lbl, String route){

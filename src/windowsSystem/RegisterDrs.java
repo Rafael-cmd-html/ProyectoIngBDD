@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -79,6 +81,7 @@ public class RegisterDrs extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -295,6 +298,9 @@ public class RegisterDrs extends javax.swing.JFrame {
         jLabel8.setText("Regresar");
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel8MouseEntered(evt);
             }
@@ -617,6 +623,7 @@ public class RegisterDrs extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtCorreo.setText("");
         txtCorreo.setForeground(Color.black);
+        txtCorreo.setEditable(true);
         
         especialidad=txtEspecialidad.getText();
         fechaIngreso=txtFecha.getText();
@@ -667,12 +674,14 @@ public class RegisterDrs extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtId.setText("");
         txtId.setForeground(Color.black);
+        
         nombre=txtNombre.getText();
         fechaIngreso=txtFecha.getText();
         cedula=txtCedula.getText();
         numeroTel= txtNumero.getText();
         correo= txtCorreo.getText();
         idMedico= txtId.getText();
+        especialidad= txtEspecialidad.getText();
         
         if(especialidad.equals("")){
             
@@ -774,9 +783,36 @@ public class RegisterDrs extends javax.swing.JFrame {
         String sql= "INSERT INTO medicos VALUES" + 
                 "('"+nombre+"','"+especialidad+"','"+fechaIngreso+"','"+cedula+"','"+numeroTel+"','"+correo+"','"+idMedico+"')";
         
+        
+        
         try (PreparedStatement stm = ConexionBDD.conexion.prepareStatement(sql)){
             
+            
             stm.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this, "¡Excelente! Doctor registrado =D");
+            
+            txtEspecialidad.setForeground(Color.gray);
+            txtEspecialidad.setText("Especialidad");
+            
+            txtFecha.setForeground(Color.gray);
+            txtFecha.setText("Fecha");
+            
+            txtNombre.setForeground(Color.gray);
+            txtNombre.setText("Nombre");
+            
+            txtNumero.setForeground(Color.gray);
+            txtNumero.setText("Número");
+            
+            txtCorreo.setForeground(Color.gray);
+            txtCorreo.setText("Correo");
+            
+            txtId.setForeground(Color.gray);
+            txtId.setText("Id");
+            
+            txtCedula.setForeground(Color.gray);
+            txtCedula.setText("Cédula");
+            
             stm.close();
             
         }catch(Exception e){
@@ -788,6 +824,16 @@ public class RegisterDrs extends javax.swing.JFrame {
     private void txtCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoMouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        
+        this.dispose();
+        RegisterOptions ro= new RegisterOptions();
+        
+        ro.setVisible(true);
+        
+    }//GEN-LAST:event_jLabel8MouseClicked
 
 
     public static void main(String args[]) {

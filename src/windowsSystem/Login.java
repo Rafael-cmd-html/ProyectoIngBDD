@@ -5,10 +5,12 @@ import Classes.Main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.sql.Statement;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
 
 public class Login extends javax.swing.JFrame {
     
@@ -17,9 +19,10 @@ public class Login extends javax.swing.JFrame {
 
     int xMouse, yMouse;
     
+    String nombre, contrasenia;
+    
     RegisterUsers paginaRegistro = new RegisterUsers();        
     AdminOptions ventanaAdmin= new AdminOptions();
-    RecepcionistOptions ventanaRecep= new RecepcionistOptions();
     
     public Login() {
         
@@ -40,7 +43,6 @@ public class Login extends javax.swing.JFrame {
 
         bgUsuarios = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        lblRegister = new javax.swing.JLabel();
         rbRecepcionista = new javax.swing.JRadioButton();
         rbAdministrador = new javax.swing.JRadioButton();
         logo = new javax.swing.JLabel();
@@ -63,27 +65,6 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblRegister.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        lblRegister.setText("¿No estás registrado? ¡Registrate aquí!");
-        lblRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblRegister.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                lblRegisterMouseMoved(evt);
-            }
-        });
-        lblRegister.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblRegisterMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblRegisterMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblRegisterMouseExited(evt);
-            }
-        });
-        jPanel1.add(lblRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 450, -1, -1));
 
         rbRecepcionista.setBackground(new java.awt.Color(255, 255, 255));
         rbRecepcionista.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
@@ -259,25 +240,6 @@ public class Login extends javax.swing.JFrame {
         psfContra.setForeground(Color.black);
     }//GEN-LAST:event_psfContraMousePressed
 
-    private void lblRegisterMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegisterMouseMoved
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_lblRegisterMouseMoved
-
-    private void lblRegisterMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegisterMouseEntered
-        // TODO add your handling code here:
-        
-        
-        lblRegister.setText("<html><u>" + lblRegister.getText() + "</html></u>");
-        
-    }//GEN-LAST:event_lblRegisterMouseEntered
-
-    private void lblRegisterMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegisterMouseExited
-        // TODO add your handling code here:
-        lblRegister.setText("¿No estás registrado? ¡Registrate aquí!");
-    }//GEN-LAST:event_lblRegisterMouseExited
-
     private void txtNombreUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreUsuarioMouseEntered
         // TODO add your handling code here:
         txtNombreUsuario.enable(true);
@@ -308,27 +270,75 @@ public class Login extends javax.swing.JFrame {
        else{
            
            
+           int existe=0;
+           nombre= txtNombreUsuario.getText();
+           contrasenia= String.valueOf(psfContra.getPassword());
+           
            if(rbAdministrador.isSelected()){
-
-
-               this.dispose();
-               ventanaAdmin.setVisible(true);
+               
+               try(Statement stm = ConexionBDD.conexion.createStatement()){
+   
+                   String sql= "SELECT * FROM  administradores WHERE nombre_usuario= '"+nombre+"' AND contrasenia= '"+contrasenia+"'";
+                   
+                   ResultSet rs= stm.executeQuery(sql);
+                   if(rs.next()){
+                       
+                       existe=1;
+                       if(existe==1){
+                            this.dispose();
+                            ventanaAdmin.setVisible(true);
+                       }
+                       
+                   }
+                   else{
+                       
+                      JOptionPane.showMessageDialog(this, "Parece que no estás registrado, prueba de nuevo o pide registro");
+                      
+                    }
+                   
+               }catch(Exception e){
+                   
+                   e.printStackTrace();
+                   
+               }
 
             }
-            if(rbRecepcionista.isSelected()){
-
-                this.dispose();
-                ventanaRecep.setVisible(true);
+           
+           else if(rbRecepcionista.isSelected()){
+               
+               try(Statement stm = ConexionBDD.conexion.createStatement()){
+   
+                   String sql= "SELECT * FROM  recepcionistas WHERE nombre_usuario= '"+nombre+"' AND contrasenia= '"+contrasenia+"'";
+                   
+                   ResultSet rs= stm.executeQuery(sql);
+                   if(rs.next()){
+                       
+                       existe=1;
+                       if(existe==1){
+                            this.dispose();
+                       }
+                       
+                   }
+                   else{
+                       
+                      JOptionPane.showMessageDialog(this, "Parece que no estás registrado, prueba de nuevo o pide registro");
+                      
+                    }
+                   
+               }catch(Exception e){
+                   
+                   e.printStackTrace();
+                   
+               }
 
             }
+           else{
+               
+               JOptionPane.showMessageDialog(this, "Selecciona tu ocupación: Administrador || Recepcionista");
+               
+           }
        }
     }//GEN-LAST:event_lblAccederMouseClicked
-
-    private void lblRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegisterMouseClicked
-        // TODO add your handling code here:
-        this.setVisible(false);
-        paginaRegistro.setVisible(true);
-    }//GEN-LAST:event_lblRegisterMouseClicked
 
     private void txtNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreUsuarioActionPerformed
         // TODO add your handling code here:
@@ -361,7 +371,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lblContrasenia;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblLogoLogin;
-    private javax.swing.JLabel lblRegister;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel nombreEmpresa;

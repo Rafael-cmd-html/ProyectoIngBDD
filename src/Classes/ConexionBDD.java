@@ -16,14 +16,13 @@ import java.sql.*;
 public class ConexionBDD 
 {
         String url = "Hospital.db";
+        
         public static Connection conexion;
     public void conectar(){
+        
         try{
             
             conexion = DriverManager.getConnection("jdbc:sqlite:" + url );
-            if(conexion != null){
-                System.out.println("Conexion Exitosa");
-            }
         }catch(SQLException ex){
             System.out.println("No ha podido establecer una conexion"+ ex);
         }

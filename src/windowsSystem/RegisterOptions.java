@@ -21,6 +21,7 @@ public class RegisterOptions extends javax.swing.JFrame {
     RegisterDrs registroDrs= new RegisterDrs();
     RegisterPatients rp= new RegisterPatients();
     RegisterConsults rc= new RegisterConsults();
+    RegisterMeds rM= new RegisterMeds();
     
     public RegisterOptions() {
         
@@ -55,6 +56,7 @@ public class RegisterOptions extends javax.swing.JFrame {
         img = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -197,11 +199,21 @@ public class RegisterOptions extends javax.swing.JFrame {
             rc.setVisible(true);
             
         }
+        else if(opcionSeleccionada.equals("Registrar medicamento")){
+            
+            this.dispose();
+            rM.setVisible(true);
+            
+        }
     }//GEN-LAST:event_lblContinuarMouseClicked
 
     private void lblRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegresarMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
+        AdminOptions aO= new AdminOptions();
+        
+        aO.setVisible(true);
+        
     }//GEN-LAST:event_lblRegresarMouseClicked
 
     public static void main(String args[]) {

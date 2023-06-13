@@ -12,26 +12,20 @@ public class AdminOptions extends javax.swing.JFrame {
     ImageIcon image;
     Icon icon;
     RegisterOptions ventanaOpcionesRegistro= new RegisterOptions();
+    VisualizarOptions ventanaOpcionesVisu = new VisualizarOptions();
     public AdminOptions() {
         
         initComponents();
         setScaleLabel(lblProfile, "src/images/adminIcon_v5.png");
         setScaleLabel(lblImageRegister, "src/images/registerIcon_v1.png");
         setScaleLabel(lblImageVisualizar1, "src/images/visualizarIcon_v1.png");
-        setScaleLabel(lblImageEditar1, "src/images/editIcon_v1.png");
-        setScaleLabel(lblImageDelete, "src/images/deleteIcon_v1.png");
         
         lblRegisterDescription.setText("<html><body>Puedes registrar pacientes, recepcionistas, médicos, <br>"
                 + "medicamentos, consultas e incluso a otro compañero <br> administrador. <br></html></body>");
         
         lblVisualizarDescription1.setText("<html><body>Puedes vizualizar los datos de <br> pacientes, recepcionistas, médicos, <br>"
-                + "medicamentos, consultas, nuestro dasboard <br> e incluso a otro compañero <br> administrador. <br></html></body>");
-        
-        lblEditarDescription.setText("<html><body>Puedes editar los datos de <br> pacientes, recepcionistas, médicos, <br>"
-                + "medicamentos, consultas e incluso a otro compañero <br> administrador. <br></html></body>");
-        
-        lblDeleteDescription.setText("<html><body>Puedes eliminar pacientes, recepcionistas, médicos, <br>"
-                + "medicamentos, consultas e incluso a otro compañero <br> administrador. <br></html></body>");
+                + "medicamentos, consultas, nuestro dasboard <br> e incluso a otro compañero <br> administrador. <br>"
+                + "Asi como realizar operaciones extra como eliminar, editar y actualizar.</html></body>");
         
         this.setLocationRelativeTo(this);
     }
@@ -53,6 +47,8 @@ public class AdminOptions extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         pnlAdmin = new javax.swing.JPanel();
         lblProfile = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         pnlVisualizar = new javax.swing.JPanel();
         lblVisualizar1 = new javax.swing.JLabel();
         lblVisualizarDescription1 = new javax.swing.JLabel();
@@ -65,18 +61,6 @@ public class AdminOptions extends javax.swing.JFrame {
         lblRegisterOptions1 = new javax.swing.JLabel();
         btnIr = new javax.swing.JPanel();
         lblIr = new javax.swing.JLabel();
-        pnlOpcionesDelete = new javax.swing.JPanel();
-        lblDelete = new javax.swing.JLabel();
-        lblDeleteDescription = new javax.swing.JLabel();
-        lblImageDelete = new javax.swing.JLabel();
-        pnlIr4 = new javax.swing.JPanel();
-        lblIr4 = new javax.swing.JLabel();
-        pnlEditar = new javax.swing.JPanel();
-        lblVisualizar = new javax.swing.JLabel();
-        lblEditarDescription = new javax.swing.JLabel();
-        lblImageEditar1 = new javax.swing.JLabel();
-        pnlIr3 = new javax.swing.JPanel();
-        lblIr3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -86,7 +70,40 @@ public class AdminOptions extends javax.swing.JFrame {
 
         pnlAdmin.setBackground(new java.awt.Color(200, 220, 247));
         pnlAdmin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlAdmin.add(lblProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 74, 77));
+        pnlAdmin.add(lblProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 80, 77));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(200, 220, 247));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Regresar");
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        pnlAdmin.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 100, 30));
 
         jPanel1.add(pnlAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 570));
 
@@ -107,7 +124,7 @@ public class AdminOptions extends javax.swing.JFrame {
         lblVisualizar1.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
         lblVisualizar1.setText("Visualizar");
         pnlVisualizar.add(lblVisualizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
-        pnlVisualizar.add(lblVisualizarDescription1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 370, 80));
+        pnlVisualizar.add(lblVisualizarDescription1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 370, 120));
 
         lblImageVisualizar1.setForeground(new java.awt.Color(255, 255, 255));
         pnlVisualizar.add(lblImageVisualizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 40, 40));
@@ -121,6 +138,9 @@ public class AdminOptions extends javax.swing.JFrame {
         lblIr2.setText("Ir");
         lblIr2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblIr2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblIr2MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblIr2MouseEntered(evt);
             }
@@ -144,7 +164,7 @@ public class AdminOptions extends javax.swing.JFrame {
 
         pnlVisualizar.add(btnIr2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 70, 20));
 
-        jPanel1.add(pnlVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 390, 150));
+        jPanel1.add(pnlVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 390, 280));
 
         pnlOpcionesRegistro.setBackground(new java.awt.Color(255, 255, 255));
         pnlOpcionesRegistro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -204,103 +224,7 @@ public class AdminOptions extends javax.swing.JFrame {
 
         pnlOpcionesRegistro.add(btnIr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 70, 20));
 
-        jPanel1.add(pnlOpcionesRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 390, 160));
-
-        pnlOpcionesDelete.setBackground(new java.awt.Color(255, 255, 255));
-        pnlOpcionesDelete.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pnlOpcionesDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        pnlOpcionesDelete.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblDelete.setBackground(new java.awt.Color(255, 255, 255));
-        lblDelete.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        lblDelete.setText("Eliminar");
-        pnlOpcionesDelete.add(lblDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
-        pnlOpcionesDelete.add(lblDeleteDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 370, 70));
-
-        lblImageDelete.setForeground(new java.awt.Color(255, 255, 255));
-        pnlOpcionesDelete.add(lblImageDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 30, 30));
-
-        pnlIr4.setBackground(new java.awt.Color(200, 220, 247));
-        pnlIr4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        lblIr4.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        lblIr4.setForeground(new java.awt.Color(255, 255, 255));
-        lblIr4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIr4.setText("Ir");
-        lblIr4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblIr4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblIr4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblIr4MouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlIr4Layout = new javax.swing.GroupLayout(pnlIr4);
-        pnlIr4.setLayout(pnlIr4Layout);
-        pnlIr4Layout.setHorizontalGroup(
-            pnlIr4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblIr4, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-        );
-        pnlIr4Layout.setVerticalGroup(
-            pnlIr4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIr4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblIr4))
-        );
-
-        pnlOpcionesDelete.add(pnlIr4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
-
-        jPanel1.add(pnlOpcionesDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 390, 130));
-
-        pnlEditar.setBackground(new java.awt.Color(255, 255, 255));
-        pnlEditar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pnlEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        pnlEditar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblVisualizar.setBackground(new java.awt.Color(255, 255, 255));
-        lblVisualizar.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        lblVisualizar.setText("Editar");
-        pnlEditar.add(lblVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
-        pnlEditar.add(lblEditarDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 370, 70));
-
-        lblImageEditar1.setForeground(new java.awt.Color(255, 255, 255));
-        pnlEditar.add(lblImageEditar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 30, 30));
-
-        pnlIr3.setBackground(new java.awt.Color(200, 220, 247));
-        pnlIr3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        lblIr3.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        lblIr3.setForeground(new java.awt.Color(255, 255, 255));
-        lblIr3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIr3.setText("Ir");
-        lblIr3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblIr3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblIr3MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblIr3MouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlIr3Layout = new javax.swing.GroupLayout(pnlIr3);
-        pnlIr3.setLayout(pnlIr3Layout);
-        pnlIr3Layout.setHorizontalGroup(
-            pnlIr3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblIr3, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-        );
-        pnlIr3Layout.setVerticalGroup(
-            pnlIr3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIr3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblIr3))
-        );
-
-        pnlEditar.add(pnlIr3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 70, 20));
-
-        jPanel1.add(pnlEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 390, 160));
+        jPanel1.add(pnlOpcionesRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 390, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -358,39 +282,41 @@ public class AdminOptions extends javax.swing.JFrame {
         lblIr2.setForeground(Color.white);
     }//GEN-LAST:event_lblIr2MouseExited
 
-    private void lblIr3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIr3MouseEntered
-        // TODO add your handling code here:
-        pnlIr3.setBackground(Color.white);
-        lblIr3.setForeground(new Color(200,220,247));
-        
-    }//GEN-LAST:event_lblIr3MouseEntered
-
-    private void lblIr3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIr3MouseExited
-        // TODO add your handling code here:
-        pnlIr3.setBackground(new Color(200,220,247));
-        lblIr3.setForeground(Color.white);
-        
-    }//GEN-LAST:event_lblIr3MouseExited
-
-    private void lblIr4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIr4MouseEntered
-        // TODO add your handling code here:
-        pnlIr4.setBackground(Color.white);
-        lblIr4.setForeground(new Color(200,220,247));
-    }//GEN-LAST:event_lblIr4MouseEntered
-
-    private void lblIr4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIr4MouseExited
-        // TODO add your handling code here:
-        pnlIr4.setBackground(new Color(200,220,247));
-        lblIr4.setForeground(Color.white);
-        
-    }//GEN-LAST:event_lblIr4MouseExited
-
     private void lblIrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIrMouseClicked
         // TODO add your handling code here:
         this.dispose();
         ventanaOpcionesRegistro.setVisible(true);
         
     }//GEN-LAST:event_lblIrMouseClicked
+
+    private void lblIr2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIr2MouseClicked
+        // TODO add your handling code here:
+        ventanaOpcionesVisu.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_lblIr2MouseClicked
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        // TODO add your handling code here:
+        jPanel2.setBackground(new Color(200,220,247));
+        jLabel1.setForeground(Color.white);
+        
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        // TODO add your handling code here:
+        jPanel2.setBackground(Color.white);
+        jLabel1.setForeground(new Color(200,220,247));
+        
+    }//GEN-LAST:event_jLabel1MouseExited
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        
+        Login log= new Login();
+        log.setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -403,29 +329,19 @@ public class AdminOptions extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnIr;
     private javax.swing.JPanel btnIr2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblDelete;
-    private javax.swing.JLabel lblDeleteDescription;
-    private javax.swing.JLabel lblEditarDescription;
-    private javax.swing.JLabel lblImageDelete;
-    private javax.swing.JLabel lblImageEditar1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblImageRegister;
     private javax.swing.JLabel lblImageVisualizar1;
     private javax.swing.JLabel lblIr;
     private javax.swing.JLabel lblIr2;
-    private javax.swing.JLabel lblIr3;
-    private javax.swing.JLabel lblIr4;
     private javax.swing.JLabel lblProfile;
     private javax.swing.JLabel lblRegisterDescription;
     private javax.swing.JLabel lblRegisterOptions1;
-    private javax.swing.JLabel lblVisualizar;
     private javax.swing.JLabel lblVisualizar1;
     private javax.swing.JLabel lblVisualizarDescription1;
     private javax.swing.JPanel pnlAdmin;
-    private javax.swing.JPanel pnlEditar;
-    private javax.swing.JPanel pnlIr3;
-    private javax.swing.JPanel pnlIr4;
-    private javax.swing.JPanel pnlOpcionesDelete;
     private javax.swing.JPanel pnlOpcionesRegistro;
     private javax.swing.JPanel pnlVisualizar;
     // End of variables declaration//GEN-END:variables
