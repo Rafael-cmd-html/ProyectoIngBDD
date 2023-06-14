@@ -17,7 +17,7 @@ public class ConexionBDD
 {
         String url = "Hospital.db";
         
-        public static Connection conexion;
+    public static Connection conexion;
     public void conectar(){
         
         try{

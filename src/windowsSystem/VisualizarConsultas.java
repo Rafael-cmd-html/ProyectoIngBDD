@@ -85,7 +85,7 @@ public class VisualizarConsultas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblConsultas);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 122, -1, 290));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 122, 590, 290));
 
         txtBuscar.setBackground(new java.awt.Color(255, 255, 255));
         txtBuscar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -256,7 +256,9 @@ public class VisualizarConsultas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,11 +289,13 @@ public class VisualizarConsultas extends javax.swing.JFrame {
         tableModel.addColumn("Paciente");
         tableModel.addColumn("Folio");
         tableModel.addColumn("Motivo");
-        tableModel.addColumn("Teléfono");
+        tableModel.addColumn("Diagnóstico");
+        tableModel.addColumn("Receta");
+        tableModel.addColumn("Estudio");
         
         tblConsultas.setModel(tableModel);
         
-        String [] datosBDD= new String[6];
+        String [] datosBDD= new String[8];
         
         try{
             
@@ -306,6 +310,8 @@ public class VisualizarConsultas extends javax.swing.JFrame {
                 datosBDD[3]= rs.getString(4);
                 datosBDD[4]= rs.getString(5);
                 datosBDD[5]= rs.getString(6);
+                datosBDD[6]= rs.getString(7);
+                datosBDD[7]= rs.getString(8);
                 
                 tableModel.addRow(datosBDD);
                 
@@ -344,7 +350,7 @@ public class VisualizarConsultas extends javax.swing.JFrame {
     private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
         // TODO add your handling code here:
         String [] registros= new String[200];
-        String [] titulos= {"Fecha","Doctor","Paciente","Folio","Motivo","Teléfono"};
+        String [] titulos= {"Fecha","Doctor","Paciente","Folio","Motivo","Diagnóstico","Receta","Estudio"};
         String sql;
         if(txtBuscar.getText().equals("")){
 
@@ -369,6 +375,8 @@ public class VisualizarConsultas extends javax.swing.JFrame {
                 registros[3]=rs.getString(4);
                 registros[4]=rs.getString(5);
                 registros[5]=rs.getString(6);
+                registros[6]=rs.getString(7);
+                registros[7]=rs.getString(8);
                 tM.addRow(registros);
 
             }

@@ -72,6 +72,12 @@ public class RegisterConsults extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -99,7 +105,7 @@ public class RegisterConsults extends javax.swing.JFrame {
         jPanel1.add(lblMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, -1, -1));
 
         lblTelefono.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        lblTelefono.setText("Teléfono paciente");
+        lblTelefono.setText("Diagnostico");
         jPanel1.add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 560, -1, -1));
 
         lblFolio.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
@@ -179,7 +185,7 @@ public class RegisterConsults extends javax.swing.JFrame {
         txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
         txtTelefono.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtTelefono.setForeground(java.awt.Color.gray);
-        txtTelefono.setText("Telefono");
+        txtTelefono.setText("Diagnóstico");
         txtTelefono.setBorder(null);
         txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -263,6 +269,36 @@ public class RegisterConsults extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 120, 20));
+
+        jLabel2.setText("Receta");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
+
+        jLabel3.setText("Estudio");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 40, -1));
+        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 100, 20));
+        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 100, 10));
+
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setForeground(java.awt.Color.gray);
+        jTextField1.setText("Receta");
+        jTextField1.setBorder(null);
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 100, -1));
+
+        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField2.setForeground(java.awt.Color.gray);
+        jTextField2.setText("Estudio");
+        jTextField2.setBorder(null);
+        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 100, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -538,8 +574,11 @@ public class RegisterConsults extends javax.swing.JFrame {
 
     private void lblBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnMouseClicked
         // TODO add your handling code here:
+        String diagnostico,receta, estudio;
         
-        telefono= txtTelefono.getText();
+        diagnostico=txtTelefono.getText();
+        receta= jTextField1.getText();
+        estudio= jTextField2.getText();
         medico=txtMedico.getText();
         folio= txtFolio.getText();
         fecha= txtFecha.getText();
@@ -547,7 +586,7 @@ public class RegisterConsults extends javax.swing.JFrame {
         paciente= txtPaciente.getText();
         
         String sql= "INSERT INTO consultas VALUES" + 
-                "('"+fecha+"','"+medico+"','"+paciente+"','"+folio+"','"+motivo+"','"+telefono+"')";
+                "('"+fecha+"','"+medico+"','"+paciente+"','"+folio+"','"+motivo+"','"+diagnostico+"','"+receta+"', '"+estudio+"')";
         
         try (PreparedStatement stm = ConexionBDD.conexion.prepareStatement(sql)){
             
@@ -583,6 +622,18 @@ public class RegisterConsults extends javax.swing.JFrame {
         rO.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        // TODO add your handling code here:
+        jTextField1.setText("");
+        jTextField1.setForeground(Color.black);
+    }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
+        // TODO add your handling code here:
+        jTextField2.setText("");
+        jTextField2.setForeground(Color.black);
+    }//GEN-LAST:event_jTextField2MouseClicked
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -594,6 +645,8 @@ public class RegisterConsults extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnRegistrar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
@@ -602,6 +655,10 @@ public class RegisterConsults extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblBtn;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFolio;
